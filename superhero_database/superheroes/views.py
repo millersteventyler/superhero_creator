@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from .models import Superhero
 from django.http import HttpResponse
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'superheroes/index.html')
+    all_superheroes = Superhero.objects.all()
+    context = {
+        'all_superheroes': all_superheroes
+    }
+    return render(request, 'superheroes/index.html', context)
